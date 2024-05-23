@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
+import authRouter from './routes/auth.route.js';
 
 //* Database configuration
 dotenv.config();
@@ -21,4 +22,8 @@ app.listen(PORT, () => {
   console.log(`Sever is listening on ${PORT}`);
 });
 
-app.use("/backend/user/", userRouter);
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+app.use("/backend/user", userRouter);
+app.use("/backend/auth", authRouter);
